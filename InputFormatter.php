@@ -11,7 +11,6 @@ class InputFormatter
     {
         $this->employeeTree = new EmployeeTree();
         $this->_input = $input;
-        // $this->format();
     }
 
     public function format()
@@ -20,8 +19,8 @@ class InputFormatter
             $this->employeeTree->addEmployee($employee);
         }
 
-        $root = $this->employeeTree->findCEO();
-        $this->employeeTree->buildTree($root);
-        return $root;
+        $this->employeeTree->setCEO();
+        $this->employeeTree->buildTree($this->employeeTree->tree);
+        return $this->employeeTree;
     }
 }

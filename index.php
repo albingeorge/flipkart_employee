@@ -12,6 +12,9 @@ include_once("EmployeeTree.php");
 
 $inputHandler = new InputHandler("json");
 $inputFormatter = new InputFormatter($inputHandler->input);
-$tree = $inputFormatter->format();
-
-echo "<pre>";print_r($tree);
+$employeeTree = $inputFormatter->format();
+$tree = $employeeTree->tree;
+// $tree
+// echo "<pre>";print_r($tree);
+$found = ($emp = $employeeTree->findEmployee($tree, 2)) ? $emp : "Not found";
+echo "<pre>";print_r($found);
