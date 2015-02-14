@@ -17,5 +17,5 @@ $tree = $employeeTree->tree;
 $found = ($emp = $employeeTree->findEmployee($tree, 2)) ? $emp : "Not found";
 $employeeTree->addBonus(10000);
 // echo "<pre>";print_r($employeeTree->tree); echo "</pre>";
-// echo "<pre>";print_r($found);
-$employeeTree->printEmployees();
+echo "<pre>";print_r($tree);
+// $employeeTree->printEmployees();

@@ -25,6 +25,31 @@
             "manager_employee_id": 1
         },
         {
+            "employee_id": 5,
+            "name": "Employee 5",
+            "email": "email1@example.com",
+            "current_salary": 30000,
+            "performance_score": 2,
+            "manager_employee_id": 2
+        },
+        {
+            "employee_id": 6,
+            "name": "Employee 6",
+            "email": "email1@example.com",
+            "current_salary": 30000,
+            "performance_score": 5,
+            "manager_employee_id": 2
+        },
+        {
+            "employee_id": 7,
+            "name": "Employee 7",
+            "email": "email1@example.com",
+            "current_salary": 30000,
+            "performance_score": 1,
+            "manager_employee_id": 1
+        },
+
+        {
             "employee_id": 4,
             "name": "Employee 4",
             "email": "email4@example.com",

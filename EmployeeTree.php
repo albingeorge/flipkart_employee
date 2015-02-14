@@ -125,7 +125,7 @@ class EmployeeTree {
 
     private function addToInternal($employee)
     {
-echo "Internal<pre>";print_r($employee); echo "</pre>";
+// echo "Internal<pre>";print_r($employee); echo "</pre>";
         // echo "string";
         $this->employeeInternal[$employee->employee_id] = $employee;
     }
