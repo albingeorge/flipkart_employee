@@ -1,0 +1,37 @@
+{
+    "employees": [
+        {
+            "employee_id": 1,
+            "name": "CEO",
+            "email": "ceo@example.com",
+            "current_salary": 50000,
+            "performance_score": 5,
+            "manager_employee_id": null
+        },
+        {
+            "employee_id": 2,
+            "name": "Employee 2",
+            "email": "email1@example.com",
+            "current_salary": 30000,
+            "performance_score": 3,
+            "manager_employee_id": 1
+        },
+        {
+            "employee_id": 3,
+            "name": "Employee 3",
+            "email": "email1@example.com",
+            "current_salary": 30000,
+            "performance_score": 4,
+            "manager_employee_id": 1
+        },
+        {
+            "employee_id": 4,
+            "name": "Employee 4",
+            "email": "email4@example.com",
+            "current_salary": 10000,
+            "performance_score": 3,
+            "manager_employee_id": 3
+        }
+
+    ]
+}
