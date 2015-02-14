@@ -14,7 +14,8 @@ $inputHandler = new InputHandler("json");
 $inputFormatter = new InputFormatter($inputHandler->input);
 $employeeTree = $inputFormatter->format();
 $tree = $employeeTree->tree;
-// $tree
-// echo "<pre>";print_r($tree);
 $found = ($emp = $employeeTree->findEmployee($tree, 2)) ? $emp : "Not found";
-echo "<pre>";print_r($found);
+$employeeTree->addBonus(1000);
+// echo "<pre>";print_r($tree); echo "</pre>";
+// echo "<pre>";print_r($found);
+// $employeeTree->printEmployees();

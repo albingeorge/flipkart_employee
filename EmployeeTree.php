@@ -4,20 +4,18 @@ include_once("Employee.php");
 class EmployeeTree {
 
     public $employeeArray = array();
+    private $employeeInternal = array();
     public $tree;
 
     public function addEmployee($employee)
     {
         $employeeObject = new Employee($employee);
         $this->employeeArray[$employeeObject->employee_id] = $employeeObject;
-
+        $this->employeeInternal[$employeeObject->employee_id] = $employeeObject;
     }
 
     public function buildTree(&$current)
     {
-        if(sizeof($this->employeeArray) == 0) {
-
-        }
         $subEmployees = $this->findSubEmployeesOfCurrent($current);
         foreach ($subEmployees as $employee) {
             $current->sub_employees[$employee->employee_id] = $employee;
@@ -66,5 +64,39 @@ class EmployeeTree {
             }
         }
         return false;
+    }
+
+    public function addBonus($bonus)
+    {
+        $this->recursiveAddBonus($this->tree, $bonus);
+    }
+
+    private function recursiveAddBonus(&$root, $bonus)
+    {
+        if(sizeof($root->sub_employees) == 0) {
+            $root->addBonus($bonus);
+            $this->updateInternalEmployee($root);
+            return;
+        } else {
+            $total = 0;
+            foreach ($root->sub_employees as $employee) {
+                $total += $employee->performance_score;
+            }
+            foreach ($root->sub_employees as $employee) {
+                $bonusSplit = ($employee->performance_score/$total)*$bonus;
+                $this->recursiveAddBonus($employee, $bonusSplit);
+            }
+        }
+    }
+
+    private function updateInternalEmployee($employee)
+    {
+        $employee->sub_employees = array();
+        $this->employeeInternal[$employee->employee_id] = $employee;
+    }
+
+    public function printEmployees()
+    {
+        echo "<pre>";print_r($this->employeeInternal); echo "</pre>";
     }
 }
