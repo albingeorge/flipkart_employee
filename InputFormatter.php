@@ -11,7 +11,7 @@ class InputFormatter
     {
         $this->employeeTree = new EmployeeTree();
         $this->_input = $input;
-        $this->format();
+        // $this->format();
     }
 
     public function format()
@@ -22,6 +22,6 @@ class InputFormatter
 
         $root = $this->employeeTree->findCEO();
         $this->employeeTree->buildTree($root);
-        echo "<pre>"; print_r($root);
+        return $root;
     }
 }

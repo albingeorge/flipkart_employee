@@ -18,7 +18,6 @@ class Employee
         $this->current_salary = $employee['current_salary'];
         $this->performance_score = $employee['performance_score'];
         $this->manager_employee_id = $employee['manager_employee_id'];
-        // echo "<pre>"; print_r($this); echo "</pre>";
 
     }
 }
