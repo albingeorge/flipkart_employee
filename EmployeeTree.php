@@ -11,13 +11,14 @@ class EmployeeTree {
     {
         $employeeObject = new Employee($employee);
         $this->employeeArray[$employeeObject->employee_id] = $employeeObject;
-        $this->employeeInternal[$employeeObject->employee_id] = $employeeObject;
     }
 
     public function buildTree(&$current)
     {
         $subEmployees = $this->findSubEmployeesOfCurrent($current);
         foreach ($subEmployees as $employee) {
+            $this->addToInternal($employee);
+            // array_push($this->employeeInternal, $employee);
             $current->sub_employees[$employee->employee_id] = $employee;
             $this->buildTree($employee);
         }
@@ -28,6 +29,7 @@ class EmployeeTree {
     {
         foreach ($this->employeeArray as $key => $employee) {
             if($employee->manager_employee_id == null) {
+                $this->addToInternal($employee);
                 // Remove the date from the array once it's added to tree
                 unset($this->employeeArray[$key]);
                 $this->tree = $employee;
@@ -75,7 +77,7 @@ class EmployeeTree {
     {
         if(sizeof($root->sub_employees) == 0) {
             $root->addBonus($bonus);
-            $this->updateInternalEmployee($root);
+            // $this->updateInternalEmployee($root);
             return;
         } else {
             $total = 0;
@@ -92,11 +94,39 @@ class EmployeeTree {
     private function updateInternalEmployee($employee)
     {
         $employee->sub_employees = array();
-        $this->employeeInternal[$employee->employee_id] = $employee;
+        // $this->employeeInternal[$employee->employee_id] = $employee;
     }
 
     public function printEmployees()
     {
         echo "<pre>";print_r($this->employeeInternal); echo "</pre>";
+    }
+
+    public function topBonusEmployees()
+    {
+        $this->recursiveTopBonueEmployees($this->tree, array());
+    }
+
+    public function recursiveTopBonueEmployees($currentEmployee, &$topEmployees)
+    {
+        $min = $topEmployees[0]->bonus_percent;
+        foreach ($topEmployees as $employee) {
+            if($min > $employee->bonus_percent) {
+                $min = $employee->bonus_percent;
+            }
+        }
+        if($currentEmployee->bonus_percent > $min) {
+            array_push($topEmployees, $currentEmployee);
+        }
+        if(sizeof($topEmployees) > 10) {
+            unset($topEmployees[10]);
+        }
+    }
+
+    private function addToInternal($employee)
+    {
+echo "Internal<pre>";print_r($employee); echo "</pre>";
+        // echo "string";
+        $this->employeeInternal[$employee->employee_id] = $employee;
     }
 }
